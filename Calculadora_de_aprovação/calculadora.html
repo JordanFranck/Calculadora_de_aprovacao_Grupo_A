@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="calculadora.css">
+</head>
+<body>
+  <h1>Calculadora de média de aprovação</h1>
+
+  <form id="formulario">
+
+    <label for="valor">Digite a primeira nota:</label>
+    <input type="text" id="valor"><br>
+
+    <label for="valor">Digite a segunda nota:</label>
+    <input type="text" id="valor"><br>
+
+    <label for="valor">Digite a terceira nota:</label>
+    <input type="text" id="valor"><br>
+
+
+
+
+
+
+    <button type="button" id="add-btn" onclick="adicionarValor()">Adicionar Valor</button>
+	
+    <table id="tabelaValores">
+      <thead>
+        <tr>
+          <th>Valores</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <button type="button" id="par-btn" onclick="mostrarPares()">Mostrar números pares</button>
+
+    <table id="tabelaPares">
+      <thead>
+        <tr>
+          <th>Números Pares</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+	
+  </form>
+  <script src="js/script.js"></script>
+</body>
+</html>
