@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média de Aprovação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="number"], input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .result {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora de Média</h1>
+
+    <label for="numNotas">Quantas notas você deseja inserir?</label>
+    <input type="number" id="numNotas" placeholder="Número de notas" min="1">
+
+    <div id="notasInputs"></div>
+
+    <input type="button" value="Calcular Média" onclick="calcularMedia()">
+
+    <div id="resultado" class="result"></div>
+</div>
+
+<script>
+    // Função para gerar os campos de entrada de notas
+    document.getElementById('numNotas').addEventListener('input', function() {
+        const numNotas = parseInt(this.value);
+        const notasInputs = document.getElementById('notasInputs');
+        notasInputs.innerHTML = '';
+
+        // Gerando campos para inserir as notas
+        for (let i = 0; i < numNotas; i++) {
+            const inputNota = document.createElement('input');
+            inputNota.type = 'number';
+            inputNota.id = `nota${i+1}`;
+            inputNota.placeholder = `Nota ${i+1}`;
+            notasInputs.appendChild(inputNota);
+        }
+    });
+
+    // Função para calcular a média e verificar a aprovação
+    function calcularMedia() {
+        const numNotas = parseInt(document.getElementById('numNotas').value);
+        if (isNaN(numNotas) || numNotas < 1) {
+            alert('Por favor, insira um número válido de notas.');
+            return;
+        }
+
+        let somaNotas = 0;
+        let media;
+        const notaMinima = 6.0;
+
+        // Somando as notas inseridas
+        for (let i = 0; i < numNotas; i++) {
+            const nota = parseFloat(document.getElementById(`nota${i+1}`).value);
+            if (isNaN(nota)) {
+                alert(`Por favor, insira uma nota válida para a Nota ${i+1}.`);
+                return;
+            }
+            somaNotas += nota;
+        }
+
+        // Calculando a média
+        media = somaNotas / numNotas;
+
+        // Exibindo o resultado
+        const resultadoDiv = document.getElementById('resultado');
+        if (media >= notaMinima) {
+            resultadoDiv.innerHTML = `Sua média é ${media.toFixed(2)}. Parabéns, você foi aprovado!`;
+            resultadoDiv.style.backgroundColor = "#d4edda";  // Verde claro para aprovado
+        } else {
+            resultadoDiv.innerHTML = `Sua média é ${media.toFixed(2)}. Você não foi aprovado.`;
+            resultadoDiv.style.backgroundColor = "#f8d7da";  // Vermelho claro para não aprovado
+        }
+    }
+</script>
+
+</body>
+</html>
